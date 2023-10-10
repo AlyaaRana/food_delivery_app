@@ -30,10 +30,26 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ButtonSearch(),
+            // ButtonSearch(),
+            SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Icon(Icons.menu, size: 30.0),
+                SizedBox(width: 16,),
+                Text("NeaaOreaa",
+                  style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold
+                  ),),
+                SizedBox(width: 16,),
+                Icon(Icons.shopping_cart, size: 30,)
+              ],
+            ),
+            CustomSearchBar(),
             SizedBox(height: 10),
             Promote(),
-            SizedBox(height: 10),
+            SizedBox(height: 25),
             Text(
               "Category",
               style: TextStyle(
@@ -42,14 +58,21 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             categoryMenu(),
-            SizedBox(height: 30,),
+            SizedBox(height: 25),
+            Text(
+              "Popular",
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            SizedBox(height: 5),
             FoodList()
           ],
         ),
       ),
     );
   }
-
 
   Widget categoryMenu() {
     return Container(
@@ -73,30 +96,5 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-
-  // Widget categoryMenu() {
-  //   final filteredCakes = filterCakesByCategory(selectedCategory);
-  //
-  //   return Container(
-  //     height: 80.0,
-  //     child: ListView.builder(
-  //       physics: BouncingScrollPhysics(),
-  //       scrollDirection: Axis.horizontal,
-  //       itemCount: categories.length,
-  //       itemBuilder: (BuildContext context, int index) {
-  //         final category = categories[index];
-  //         return GestureDetector(
-  //           onTap: () {
-  //             setCategory(category.name); // Atur kategori yang dipilih
-  //           },
-  //           child: CategoryButton(
-  //             category: category,
-  //             index: category.name == selectedCategory ? index : -1,
-  //           ),
-  //         );
-  //       },
-  //     ),
-  //   );
-  // }
 
 }
