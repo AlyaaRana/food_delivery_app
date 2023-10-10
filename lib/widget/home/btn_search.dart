@@ -116,43 +116,33 @@
 
 import 'package:flutter/material.dart';
 
-class ButtonSearch extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Text(
-          "Neaaorea",
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        SizedBox(width: 130), // Jarak antara judul dan rectangle
-        CustomSearchBar(),
-      ],
-    );
-  }
-}
 
 class CustomSearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 90,
-      height: 40,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: Colors.black, width: 2),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Icon(Icons.search),
-          CircleAvatar(
-            radius: 12,
+    return Padding(
+      padding: EdgeInsets.only(left: 10,top: 5,right: 10,bottom: 5),
+      child: TextField(
+
+        decoration: InputDecoration(
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(15.0)),
+            borderSide: BorderSide(
+              width: 0,
+              color: Colors.black,
+              style: BorderStyle.none,
+            ),
           ),
-        ],
+          filled: true,
+          prefixIcon: Icon(
+            Icons.search,
+            color: Colors.black,
+          ),
+          fillColor: Color(0xFFFEFDFD),
+          suffixIcon: Icon(Icons.sort,color: Colors.black,),
+          hintStyle: new TextStyle(color: Color(0xFFd0cece), fontSize: 18),
+          hintText: "What would your like to buy?",
+        ),
       ),
     );
   }

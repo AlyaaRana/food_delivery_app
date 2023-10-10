@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/core/color.dart';
+import 'package:food_delivery_app/model/items.dart';
 import 'package:food_delivery_app/screens/profile.dart';
 import 'package:food_delivery_app/screens/view/cart.dart';
 import 'package:food_delivery_app/screens/view/favorite.dart';
@@ -22,9 +23,7 @@ class _MyAppState extends State<MyApp> {
   var _page = 0;
   final pages = [
     HomePage(),
-    FavoriteFood(),
-    CartPage(),
-    NotificationPage(),
+    FavoriteFood(favoriteItems: food,),
     ProfilePage(),
   ];
 
@@ -59,8 +58,6 @@ class _MyAppState extends State<MyApp> {
             items: <Widget>[
               Icon(Icons.home, size: 30),
               Icon(Icons.favorite, size: 30),
-              Icon(Icons.shopping_cart, size: 30),
-              Icon(Icons.notifications_on, size: 30),
               Icon(Icons.person, size: 30),
             ],
             onTap: (index) {
