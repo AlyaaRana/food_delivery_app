@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/model/items.dart';
 
+import '../../widget/home/food_card.dart';
+
 class FavoriteFood extends StatelessWidget {
   final List<Food> favoriteItems;
 
@@ -8,21 +10,28 @@ class FavoriteFood extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return favoriteItems.isEmpty
-        ? Center(
-      child: Text(
-        'Anda tidak menambahkan apapun.',
-        style: TextStyle(fontSize: 18),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Favorite Items'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.of(context).pop();
+          }
+        )
       ),
-    )
-        : ListView.builder(
-      itemCount: favoriteItems.length,
-      itemBuilder: (context, index) {
-        final foodItem = favoriteItems[index];
-        return ListTile(
-          title: Text(foodItem.name)
-        );
-      },
+      body: ListView.builder(
+        itemCount: favoriteItems.length,
+        itemBuilder: (context, index) {
+          final foodItem = favoriteItems[index];
+          return FoodCard(
+            foodItem: foodItem,
+            isFavorite: foodItem.isFavorite,
+            onPressed: () {
+            },
+          );
+        },
+      ),
     );
   }
 }

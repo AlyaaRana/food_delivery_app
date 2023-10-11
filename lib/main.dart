@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/core/color.dart';
 import 'package:food_delivery_app/model/items.dart';
-import 'package:food_delivery_app/screens/profile.dart';
-import 'package:food_delivery_app/screens/view/cart.dart';
-import 'package:food_delivery_app/screens/view/favorite.dart';
-import 'package:food_delivery_app/screens/view/home_page.dart';
 import 'package:food_delivery_app/screens/login.dart';
+import 'package:food_delivery_app/screens/profile.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:food_delivery_app/screens/view/notification.dart';
+import 'package:food_delivery_app/screens/view/favorite.dart';
+import 'package:food_delivery_app/screens/home_page.dart';
+import 'package:food_delivery_app/screens/view/account.dart';
 
 void main() {
   runApp(MyApp());
@@ -23,7 +22,7 @@ class _MyAppState extends State<MyApp> {
   var _page = 0;
   final pages = [
     HomePage(),
-    FavoriteFood(favoriteItems: food,),
+    FavoriteFood(favoriteItems: food),
     ProfilePage(),
   ];
 
@@ -35,6 +34,13 @@ class _MyAppState extends State<MyApp> {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
+      initialRoute: '/',
+      routes: {
+        '/favorite': (context) => FavoriteFood(favoriteItems: food),
+        '/profile': (context) => ProfilePage(),
+        '/account' : (context) => Account(),
+        '/login' : (context) => LoginPage(),
+      },
       home: Scaffold(
         bottomNavigationBar: Container(
           decoration: BoxDecoration(
@@ -50,7 +56,7 @@ class _MyAppState extends State<MyApp> {
             ],
           ),
           child: CurvedNavigationBar(
-            index: 0,
+            index: _page,
             buttonBackgroundColor: Colors.white,
             backgroundColor: Colors.transparent,
             animationCurve: Curves.easeInOut,
@@ -62,7 +68,7 @@ class _MyAppState extends State<MyApp> {
             ],
             onTap: (index) {
               setState(() {
-                _page = index;
+                _page = index; // Perbarui halaman aktif berdasarkan indeks tombol yang diklik
               });
             },
           ),

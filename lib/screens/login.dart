@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-
+import 'package:food_delivery_app/screens/home_page.dart';
 import '../controller/user_input.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key});
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -22,7 +22,7 @@ class _LoginPageState extends State<LoginPage> {
         title: Text("Login Page"),
       ),
       body: Padding(
-        padding:  EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
@@ -47,13 +47,51 @@ class _LoginPageState extends State<LoginPage> {
               onPressed: () {
                 final email = emailController.text;
                 final password = passwordController.text;
-                if (email == "user@example.com" && password == "password") {
+                if (email.isEmpty || password.isEmpty) {
+                  // Validasi isian kosong
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text("Error"),
+                        content: Text("Email dan kata sandi tidak boleh kosong."),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text("OK"),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                } else if (email == "user@example.com" && password == "password") {
                   setState(() {
                     isLoggedIn = true;
                   });
-                  // Navigasi ke halaman lain atau lakukan tindakan setelah login sukses
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (context) => HomePage(),
+                  ));
                 } else {
-                  // Menampilkan pesan kesalahan atau tindakan jika login gagal
+                  // Validasi login gagal
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text("Error"),
+                        content: Text("Email atau kata sandi salah."),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text("OK"),
+                          ),
+                        ],
+                      );
+                    },
+                  );
                 }
               },
               text: 'Login',
@@ -65,4 +103,3 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
-
