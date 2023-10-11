@@ -6,6 +6,7 @@ class Food {
   final double rating;
   final int kal;
   final String category;
+  bool isFavorite;
 
   Food({
     required this.name,
@@ -13,7 +14,8 @@ class Food {
     required this.price,
     required this.rating,
     required this.kal,
-    required this.category
+    required this.category,
+    this.isFavorite = false,
   });
 }
 
